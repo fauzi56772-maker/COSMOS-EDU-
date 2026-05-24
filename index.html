@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Jelajahi keajaiban alam semesta — dari Big Bang, tata surya, galaksi, hingga black hole. Website edukasi luar angkasa interaktif dan sinematik." />
+  <meta name="keywords" content="alam semesta, tata surya, galaksi, black hole, edukasi luar angkasa, astronomi" />
+  <meta name="author" content="CosmosEdu" />
+  <meta property="og:title" content="CosmosEdu — Menjelajahi Alam Semesta" />
+  <meta property="og:description" content="Website edukasi astronomi interaktif dengan visual sinematik premium." />
+  <meta property="og:type" content="website" />
+  <title>CosmosEdu — Menjelajahi Alam Semesta</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Exo+2:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- AOS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════ CURSOR ═══════════════════════════════ -->
+  <div class="cursor-glow" id="cursorGlow"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+
+  <!-- ═══════════════════════════════ LOADING ══════════════════════════════ -->
+  <div id="loadingScreen" class="loading-screen">
+    <canvas id="loadingCanvas"></canvas>
+    <div class="loading-content">
+      <div class="loading-logo">
+        <span class="logo-icon"><i class="fas fa-meteor"></i></span>
+        <span class="logo-text">COSMOS<span>EDU</span></span>
+      </div>
+      <div class="loading-bar-wrap">
+        <div class="loading-bar" id="loadingBar"></div>
+      </div>
+      <p class="loading-text" id="loadingText">Menginisialisasi galaksi...</p>
+      <div class="loading-percent" id="loadingPercent">0%</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ AUDIO ════════════════════════════════ -->
+  <button class="audio-btn" id="audioBtn" title="Toggle Musik">
+    <i class="fas fa-volume-up" id="audioIcon"></i>
+  </button>
+
+  <!-- ═══════════════════════════════ BACK TO TOP ═══════════════════════════ -->
+  <button class="back-top" id="backTop" title="Kembali ke atas">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- ═══════════════════════════════ NAVBAR ═══════════════════════════════ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">
+        <i class="fas fa-meteor"></i>
+        COSMOS<span>EDU</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#hero" class="nav-link active">Beranda</a></li>
+        <li><a href="#solar" class="nav-link">Tata Surya</a></li>
+        <li><a href="#galaxy" class="nav-link">Galaksi</a></li>
+        <li><a href="#blackhole" class="nav-link">Black Hole</a></li>
+        <li><a href="#timeline" class="nav-link">Timeline</a></li>
+        <li><a href="#facts" class="nav-link">Fakta Menarik</a></li>
+        <li><a href="#contact" class="nav-link">Kontak</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════ HERO ═════════════════════════════════ -->
+  <section class="hero" id="hero">
+    <canvas id="heroCanvas"></canvas>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow" data-aos="fade-down" data-aos-delay="200">
+        <span class="eyebrow-line"></span>
+        EKSPLORASI KOSMIK INTERAKTIF
+        <span class="eyebrow-line"></span>
+      </p>
+      <h1 class="hero-title" data-aos="fade-up" data-aos-delay="400">
+        Menjelajahi<br />
+        <span class="gradient-text">Alam Semesta</span>
+      </h1>
+      <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="600">
+        Dari Big Bang hingga tepi jagad raya — temukan keajaiban kosmik yang menakjubkan melalui pengalaman edukasi sinematik yang imersif dan interaktif.
+      </p>
+      <div class="hero-buttons" data-aos="fade-up" data-aos-delay="800">
+        <a href="#about" class="btn btn-primary btn-glow">
+          <i class="fas fa-rocket"></i> Mulai Jelajah
+        </a>
+        <a href="#solar" class="btn btn-secondary">
+          <i class="fas fa-globe"></i> Tata Surya
+        </a>
+        <a href="#facts" class="btn btn-outline">
+          <i class="fas fa-star"></i> Fakta Menarik
+        </a>
+      </div>
+      <div class="hero-stats" data-aos="fade-up" data-aos-delay="1000">
+        <div class="stat-item">
+          <span class="stat-num" data-count="93">0</span><span>Miliar</span>
+          <p>Tahun Cahaya Diameter</p>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-num" data-count="2">0</span><span>Triliun</span>
+          <p>Galaksi di Alam Semesta</p>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-num" data-count="13">0</span><span>.8 Miliar</span>
+          <p>Tahun Usia Alam Semesta</p>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <div class="scroll-mouse">
+        <div class="scroll-wheel"></div>
+      </div>
+      <span>Scroll untuk Menjelajah</span>
+    </div>
+  </section>
+
+  <!-- ════════════════════ ABOUT / UNIVERSE ════════════════════════════════ -->
+  <section class="about-section" id="about">
+    <div class="section-bg-canvas" id="aboutBg"></div>
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <p class="section-tag"><i class="fas fa-infinity"></i> TENTANG ALAM SEMESTA</p>
+        <h2 class="section-title">Keajaiban Jagad Raya</h2>
+        <p class="section-desc">Alam semesta adalah segalanya — ruang, waktu, materi, energi, dan hukum fisika yang mengaturnya.</p>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-card glass-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="about-icon"><i class="fas fa-atom"></i></div>
+          <h3>Apa itu Alam Semesta?</h3>
+          <p>Alam semesta adalah totalitas eksistensi — mencakup seluruh ruang, waktu, materi, energi, dan hukum fisika. Ia terbentang lebih dari <strong>93 miliar tahun cahaya</strong> dengan struktur yang terus berkembang sejak awal waktu.</p>
+        </div>
+        <div class="about-card glass-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="about-icon bang-icon"><i class="fas fa-burst"></i></div>
+          <h3>Teori Big Bang</h3>
+          <p>Sekitar <strong>13,8 miliar tahun lalu</strong>, alam semesta bermula dari titik singularitas tak terbatas. Ledakan kosmik ini menciptakan ruang, waktu, dan seluruh materi yang ada, kemudian berkembang dan mendingin membentuk galaksi serta bintang.</p>
+        </div>
+        <div class="about-card glass-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="about-icon dark-icon"><i class="fas fa-moon"></i></div>
+          <h3>Materi Gelap</h3>
+          <p>Sekitar <strong>27%</strong> alam semesta terdiri dari materi gelap — zat misterius yang tidak memancarkan cahaya namun dapat dideteksi melalui pengaruh gravitasinya. Tanpanya, galaksi tidak akan mempertahankan bentuknya.</p>
+        </div>
+        <div class="about-card glass-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="about-icon energy-icon"><i class="fas fa-bolt"></i></div>
+          <h3>Energi Gelap</h3>
+          <p>Sekitar <strong>68%</strong> alam semesta adalah energi gelap — kekuatan misterius yang mendorong ekspansi alam semesta semakin cepat. Hanya <strong>5%</strong> yang merupakan materi biasa — seluruh bintang, planet, dan kita.</p>
+        </div>
+        <div class="about-card glass-card about-card-wide" data-aos="fade-up" data-aos-delay="500">
+          <div class="about-icon scale-icon"><i class="fas fa-expand-arrows-alt"></i></div>
+          <h3>Seberapa Luas Alam Semesta?</h3>
+          <p>Alam semesta yang dapat diamati memiliki diameter sekitar <strong>93 miliar tahun cahaya</strong>. Satu tahun cahaya setara dengan ~9,46 triliun kilometer. Namun alam semesta sesungguhnya bisa jauh lebih besar — bahkan mungkin <strong>tak terbatas</strong>. Jika Anda bepergian dengan kecepatan cahaya, dibutuhkan 93 miliar tahun hanya untuk melintasi alam semesta yang terlihat.</p>
+          <div class="universe-scale-bar">
+            <div class="scale-item"><span class="scale-dot earth"></span>Bumi</div>
+            <div class="scale-arrow"><i class="fas fa-arrow-right"></i></div>
+            <div class="scale-item"><span class="scale-dot solar"></span>Tata Surya</div>
+            <div class="scale-arrow"><i class="fas fa-arrow-right"></i></div>
+            <div class="scale-item"><span class="scale-dot milky"></span>Bima Sakti</div>
+            <div class="scale-arrow"><i class="fas fa-arrow-right"></i></div>
+            <div class="scale-item"><span class="scale-dot universe"></span>Alam Semesta</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════ SOLAR SYSTEM ════════════════════════════════════ -->
+  <section class="solar-section" id="solar">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <p class="section-tag"><i class="fas fa-sun"></i> TATA SURYA KITA</p>
+        <h2 class="section-title">Planet-Planet Tata Surya</h2>
+        <p class="section-desc">Delapan planet mengorbit bintang kita — Matahari. Setiap dunia unik dengan karakteristiknya sendiri.</p>
+      </div>
+
+      <!-- Orbit Simulator -->
+      <div class="orbit-wrap" data-aos="zoom-in">
+        <canvas id="orbitCanvas"></canvas>
+        <div class="orbit-labels" id="orbitLabels"></div>
+      </div>
+
+      <!-- Planet Cards -->
+      <div class="planet-grid" id="planetGrid">
+
+        <div class="planet-card" data-aos="fade-up" data-aos-delay="50" data-planet="sun">
+          <div class="planet-glow sun-glow"></div>
+          <div class="planet-visual">
+            <div class="planet-sphere sun-sphere">
+              <div class="planet-ring-sun"></div>
+            </div>
+          </div>
+          <div class="planet-info">
+            <h3 class="planet-name">Matahari</h3>
+            <p class="planet-type">Bintang Katai Kuning</p>
+            <div class="planet-stats">
+              <div class="pstat"><i class="fas fa-ruler"></i><span>1.392.700 km</span><small>Diameter</small></div>
+              <div class="pstat"><i class="fas fa-fire"></i><span>5.500°C</span><small>Suhu Permukaan</small></div>
+            </div>
+            <p class="planet-fact">☀️ Matahari mengandung 99,86% massa seluruh tata surya dan mampu menampung 1,3 juta Bumi.</p>
+          </div>
+        </div>
+
+        <div class="planet-card" data-aos="fade-up" data-aos-delay="100" data-planet="mercury">
+          <div class="planet-glow mercury-glow"></div>
+          <div class="planet-visual">
+            <div class="planet-sphere mercury-sphere"></div>
+          </div>
+          <div class="planet-info">
+            <h3 class="planet-name">Merkurius</h3>
+            <p class="planet-type">Planet Terkecil</p>
+            <div class="planet-stats">
+              <div class="pstat"><i class="fas fa-ruler"></i><span>4.879 km</span><small>Diameter</small></div>
+              <div class="pstat"><i class="fas fa-route"></i><span>57,9 Juta km</span><small>Jarak dari Matahari</small></div>
+            </div>
+            <p class="planet-fact">🌑 Merkurius tidak memiliki atmosfer sehingga suhu berubah drastis dari -180°C hingga 430°C.</p>
+          </div>
+        </div>
+
+        <div class="planet-card" data-aos="fade-up" data-aos-delay="150" data-planet="venus">
+          <div class="planet-glow venus-glow"></div>
+          <div class="planet-visual">
+            <div class="planet-sphere venus-sphere"></div>
+          </div>
+          <div class="planet-info">
+            <h3 class="planet-name">Venus</h3>
+            <p class="planet-type">Planet Terpanas</p>
+            <div class="planet-stats">
+              <div class="pstat"><i class="fas fa-ruler"></i><span>12.104 km</span><small>Diameter</small></div>
+              <div class="pstat"><i class="fas fa-route"></i><span>108,2 Juta km</span><small>Jarak dari Matahari</small></div>
+            </div>
+            <p class="planet-fact">🌡️ Venus adalah planet terpanas (462°C rata-rata) meski bukan yang terdekat ke Matahari — efek rumah kaca ekstrem!</p>
+          </div>
+        </div>
+
+        <div class="planet-card" data-aos="fade-up" data-aos-delay="200" data-planet="earth">
+          <div class="planet-glow earth-glow"></div>
+          <div class="planet-visual">
+            <div class="planet-sphere earth-sphere">
+              <div class="earth-clouds"></div>
+            </div>
+          </div>
+          <div class="planet-info">
+            <h3 class="planet-name">Bumi</h3>
+            <p class="planet-type">Planet Kehidupan</p>
+            <div class="planet-stats">
+              <div class="pstat"><i class="fas fa-ruler"></i><span>12.742 km</span><small>Diameter</small></div>
+              <div class="pstat"><i class="fas fa-route"></i><span>149,6 Juta km</span><small>Jarak dari Matahari</small></div>
+            </div>
+            <p class="planet-fact">🌍 Satu-satunya planet yang diketahui mendukung kehidupan dengan air cair, atmosfer pelindung, dan medan magnetik.</p>
+          </div>
+        </div>
+
+        <div class="planet-card" data-aos="fade-up" data-aos-delay="250" data-planet="mars">
+          <div class="planet-glow mars-glow"></div>
+          <div class="planet-visual">
+            <div class="planet-sphere mars-sphere"></div>
+          </div>
+          <div class="planet-info">
+            <h3 class="planet-name">Mars</h3>
+            <p class="planet-type">Planet Merah</p>
+            <div class="planet-stats">
+              <div class="pstat"><i class="fas fa-ruler"></i><span>6.779 km</span><small>Diameter</small></div>
+              <div class="pstat"><i class="fas fa-route"></i><span>227,9 Juta km</span><small>Jarak dari Matahari</small></div>
+            </div>
+            <p class="planet-fact">🔴 Mars memiliki gunung berapi tertinggi di tata surya, Olympus Mons — 3x lebih tinggi dari Everest!</p>
+          </div>
+        </div>
+
+        <div class="planet-card" data-aos="fade-up" data-aos-delay="300" data-planet="jupiter">
+          <div class="planet-glow jupiter-glow"></div>
+          <div class="planet-visual">
+            <div class="planet-sphere jupiter-sphere">
+              <div class="jupiter-storm"></div>
+            </div>
+          </div>
+          <div class="planet-info">
+            <h3 class="planet-name">Jupiter</h3>
+            <p class="planet-type">Planet Terbesar</p>
+            <div class="planet-stats">
+              <div class="pstat"><i class="fas fa-ruler"></i><span>139.820 km</span><small>Diameter</small></div>
+              <div class="pstat"><i class="fas fa-route"></i><span>778,5 Juta km</span><small>Jarak dari Matahari</small></div>
+            </div>
+            <p class="planet-fact">🌪️ Badai Besar Merah Jupiter sudah berlangsung lebih dari 350 tahun — lebih besar dari seluruh Bumi!</p>
+          </div>
+        </div>
+
+        <div class="planet-card" data-aos="fade-up" data-aos-delay="350" data-planet="saturn">
+          <div class="planet-glow saturn-glow"></div>
+          <div class="planet-visual">
+            <div class="planet-sphere saturn-sphere">
+              <div class="saturn-rings"></div>
+            </div>
+          </div>
+          <div class="planet-info">
+            <h3 class="planet-name">Saturnus</h3>
+            <p class="planet-type">Planet Bercincin</p>
+            <div class="planet-stats">
+              <div class="pstat"><i class="fas fa-ruler"></i><span>116.460 km</span><small>Diameter</small></div>
+              <div class="pstat"><i class="fas fa-route"></i><span>1,43 Miliar km</span><small>Jarak dari Matahari</small></div>
+            </div>
+            <p class="planet-fact">💍 Cincin Saturnus terdiri dari es dan batuan. Planet ini sangat ringan — densitasnya lebih kecil dari air!</p>
+          </div>
+        </div>
+
+        <div class="planet-card" data-aos="fade-up" data-aos-delay="400" data-planet="uranus">
+          <div class="planet-glow uranus-glow"></div>
+          <div class="planet-visual">
+            <div class="planet-sphere uranus-sphere">
+              <div class="uranus-ring"></div>
+            </div>
+          </div>
+          <div class="planet-info">
+            <h3 class="planet-name">Uranus</h3>
+            <p class="planet-type">Planet Es Biru</p>
+            <div class="planet-stats">
+              <div class="pstat"><i class="fas fa-ruler"></i><span>50.724 km</span><small>Diameter</small></div>
+              <div class="pstat"><i class="fas fa-route"></i><span>2,87 Miliar km</span><small>Jarak dari Matahari</small></div>
+            </div>
+            <p class="planet-fact">🧊 Uranus berputar miring 98° — hampir berbaring menyamping! Setiap kutubnya mengalami malam selama 42 tahun.</p>
+          </div>
+        </div>
+
+        <div class="planet-card" data-aos="fade-up" data-aos-delay="450" data-planet="neptune">
+          <div class="planet-glow neptune-glow"></div>
+          <div class="planet-visual">
+            <div class="planet-sphere neptune-sphere"></div>
+          </div>
+          <div class="planet-info">
+            <h3 class="planet-name">Neptunus</h3>
+            <p class="planet-type">Planet Terjauh</p>
+            <div class="planet-stats">
+              <div class="pstat"><i class="fas fa-ruler"></i><span>49.244 km</span><small>Diameter</small></div>
+              <div class="pstat"><i class="fas fa-route"></i><span>4,5 Miliar km</span><small>Jarak dari Matahari</small></div>
+            </div>
+            <p class="planet-fact">💎 Di Neptunus, hujan berlian sesungguhnya terjadi — tekanan ekstrem mengkristalkan karbon menjadi berlian cair!</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════ GALAXY ═══════════════════════════════════════════ -->
+  <section class="galaxy-section" id="galaxy">
+    <canvas id="galaxyCanvas"></canvas>
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <p class="section-tag"><i class="fas fa-galaxy"></i> GALAKSI</p>
+        <h2 class="section-title">Samudera Bintang di Jagad Raya</h2>
+        <p class="section-desc">Alam semesta dihuni oleh lebih dari 2 triliun galaksi — masing-masing berisi miliaran bintang.</p>
+      </div>
+      <div class="galaxy-grid">
+        <div class="galaxy-card glass-card" data-aos="fade-right" data-aos-delay="100">
+          <div class="galaxy-icon"><i class="fas fa-circle-dot"></i></div>
+          <h3>Bima Sakti</h3>
+          <p>Rumah kita — galaksi spiral berpalang dengan diameter <strong>~100.000 tahun cahaya</strong>. Berisi 200–400 miliar bintang. Tata Surya kita terletak di lengan Orion, sekitar 27.000 tahun cahaya dari inti galaksi.</p>
+          <div class="galaxy-visual milky-visual">
+            <div class="milky-core"></div>
+            <div class="milky-arm arm1"></div>
+            <div class="milky-arm arm2"></div>
+            <div class="milky-arm arm3"></div>
+            <div class="milky-arm arm4"></div>
+          </div>
+        </div>
+        <div class="galaxy-card glass-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="galaxy-icon andromeda-icon"><i class="fas fa-circle-nodes"></i></div>
+          <h3>Andromeda (M31)</h3>
+          <p>Galaksi tetangga terdekat kita, berjarak <strong>2,537 juta tahun cahaya</strong>. Ia lebih besar dari Bima Sakti dengan ~1 triliun bintang. Andromeda sedang menuju kita dan akan <strong>bertabrakan</strong> dalam ~4,5 miliar tahun!</p>
+          <div class="galaxy-visual andromeda-visual">
+            <div class="andromeda-core"></div>
+            <div class="andromeda-halo"></div>
+          </div>
+        </div>
+        <div class="galaxy-card glass-card" data-aos="fade-left" data-aos-delay="300">
+          <div class="galaxy-icon nebula-icon"><i class="fas fa-cloud"></i></div>
+          <h3>Nebula</h3>
+          <p>Nebula adalah awan gas dan debu kosmik raksasa — tempat lahirnya bintang-bintang baru. Nebula Orion berjarak hanya <strong>1.344 tahun cahaya</strong> dan merupakan salah satu yang paling terang dan terindah di langit malam.</p>
+          <div class="galaxy-visual nebula-visual">
+            <div class="nebula-cloud c1"></div>
+            <div class="nebula-cloud c2"></div>
+            <div class="nebula-cloud c3"></div>
+          </div>
+        </div>
+        <div class="galaxy-card glass-card" data-aos="fade-right" data-aos-delay="400">
+          <div class="galaxy-icon spiral-icon"><i class="fas fa-hurricane"></i></div>
+          <h3>Galaksi Spiral</h3>
+          <p>Galaksi spiral seperti Bima Sakti memiliki lengan-lengan berbentuk spiral yang memancar dari inti pusat. Lengan spiral adalah kawasan pembentukan bintang yang aktif, kaya akan gas, debu, dan bintang-bintang muda yang cerah.</p>
+        </div>
+        <div class="galaxy-card glass-card" data-aos="fade-left" data-aos-delay="500">
+          <div class="galaxy-icon elliptical-icon"><i class="fas fa-circle"></i></div>
+          <h3>Galaksi Elips</h3>
+          <p>Galaksi elips adalah yang terbesar di alam semesta — beberapa mengandung lebih dari <strong>100 triliun bintang</strong>! Berbentuk bola atau oval, didominasi bintang tua kemerahan, dan jarang memiliki daerah pembentukan bintang aktif.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════ BLACK HOLE ══════════════════════════════════════ -->
+  <section class="blackhole-section" id="blackhole">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <p class="section-tag"><i class="fas fa-circle"></i> BLACK HOLE</p>
+        <h2 class="section-title">Lubang Hitam Kosmik</h2>
+        <p class="section-desc">Monster gravitasi yang bahkan cahaya pun tak mampu meloloskan diri darinya.</p>
+      </div>
+      <div class="bh-layout">
+        <div class="bh-visual" data-aos="fade-right">
+          <canvas id="blackholeCanvas"></canvas>
+        </div>
+        <div class="bh-content" data-aos="fade-left" data-aos-delay="200">
+          <div class="bh-card glass-card">
+            <div class="bh-icon"><i class="fas fa-circle"></i></div>
+            <h3>Apa itu Black Hole?</h3>
+            <p>Black hole adalah wilayah ruang-waktu di mana gravitasi sangat kuat sehingga tidak ada apapun — termasuk cahaya dan radiasi elektromagnetik lainnya — yang dapat meloloskan diri. Terbentuk dari keruntuhan bintang masif di akhir hidupnya.</p>
+          </div>
+          <div class="bh-card glass-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="bh-icon horizon-icon"><i class="fas fa-ring"></i></div>
+            <h3>Event Horizon</h3>
+            <p>Event horizon adalah "titik tanpa jalan kembali" — batas di mana kecepatan lepas sama persis dengan kecepatan cahaya (299.792 km/s). Setelah melewatinya, tidak ada informasi yang bisa keluar. Ia bukan permukaan fisik, melainkan batas matematis ruang-waktu.</p>
+          </div>
+          <div class="bh-card glass-card" data-aos="fade-up" data-aos-delay="400">
+            <div class="bh-icon singular-icon"><i class="fas fa-dot-circle"></i></div>
+            <h3>Singularitas</h3>
+            <p>Di pusat black hole terdapat singularitas — titik dengan volume nol namun densitas tak terbatas di mana hukum fisika kita tidak berlaku. Di sini, ruang dan waktu sebagaimana kita kenal berakhir, dan diperlukan teori quantum gravity untuk memahaminya.</p>
+          </div>
+          <div class="bh-card glass-card" data-aos="fade-up" data-aos-delay="500">
+            <div class="bh-icon light-icon"><i class="fas fa-lightbulb"></i></div>
+            <h3>Bagaimana Cahaya Tersedot?</h3>
+            <p>Cahaya bergerak dalam garis lurus (geodesik) melalui ruang-waktu. Black hole membelokkan ruang-waktu begitu ekstrem sehingga semua geodesik menuju singularitas. Fotonosfer adalah wilayah di mana foton berorbits — cahaya yang masuk terlalu dalam akan tersedot selamanya.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════ TIMELINE ════════════════════════════════════════ -->
+  <section class="timeline-section" id="timeline">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <p class="section-tag"><i class="fas fa-clock-rotate-left"></i> TIMELINE KOSMIK</p>
+        <h2 class="section-title">Sejarah Alam Semesta</h2>
+        <p class="section-desc">Dari ketiadaan hingga kehidupan — perjalanan 13,8 miliar tahun dalam satu garis waktu kosmik.</p>
+      </div>
+      <div class="timeline-wrap">
+        <div class="timeline-line"></div>
+
+        <div class="timeline-item tl-left" data-aos="fade-right">
+          <div class="tl-dot"><i class="fas fa-burst"></i></div>
+          <div class="tl-card glass-card">
+            <span class="tl-time">13,8 Miliar Tahun Lalu</span>
+            <h3>Big Bang</h3>
+            <p>Awal dari segalanya. Dari singularitas bersuhu tak terbatas, alam semesta lahir dalam fraksi detik pertama. Energi, materi, ruang, dan waktu mulai terbentuk. Quark, elektron, dan foton muncul pertama kali.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item tl-right" data-aos="fade-left" data-aos-delay="100">
+          <div class="tl-dot star-dot"><i class="fas fa-star"></i></div>
+          <div class="tl-card glass-card">
+            <span class="tl-time">400 Juta Tahun Setelah Big Bang</span>
+            <h3>Bintang & Galaksi Pertama</h3>
+            <p>Alam semesta memasuki "Zaman Kegelapan Kosmik" lalu bintang-bintang pertama muncul, menerangi jagad raya. Galaksi awal terbentuk dari gravitasi yang mengumpulkan gas dan bintang primordial.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item tl-left" data-aos="fade-right" data-aos-delay="200">
+          <div class="tl-dot solar-dot"><i class="fas fa-sun"></i></div>
+          <div class="tl-card glass-card">
+            <span class="tl-time">4,6 Miliar Tahun Lalu</span>
+            <h3>Tata Surya Terbentuk</h3>
+            <p>Awan gas dan debu antarbintang runtuh akibat gravitasi, membentuk Matahari kita dan cakram protoplanet. Planet-planet, termasuk Bumi, terbentuk dari akumulasi material dalam cakram ini selama jutaan tahun.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item tl-right" data-aos="fade-left" data-aos-delay="300">
+          <div class="tl-dot earth-dot"><i class="fas fa-globe"></i></div>
+          <div class="tl-card glass-card">
+            <span class="tl-time">4,5 Miliar Tahun Lalu</span>
+            <h3>Bumi Terbentuk</h3>
+            <p>Proto-Bumi terbentuk dan mengalami pembombardiran meteorit intensif. Sebuah objek sebesar Mars menabrak Bumi, melontarkan material yang kemudian membentuk Bulan. Lautan muncul dari uap air yang mengembun.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item tl-left" data-aos="fade-right" data-aos-delay="400">
+          <div class="tl-dot life-dot"><i class="fas fa-dna"></i></div>
+          <div class="tl-card glass-card">
+            <span class="tl-time">3,8 Miliar Tahun Lalu</span>
+            <h3>Kehidupan Pertama</h3>
+            <p>Molekul-molekul organik bergabung membentuk organisme sel tunggal pertama. Bakteri prokariota adalah penghuni pertama Bumi. Miliaran tahun kemudian, fotosintesis mengisi atmosfer dengan oksigen, membuka jalan bagi kehidupan kompleks.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item tl-right" data-aos="fade-left" data-aos-delay="500">
+          <div class="tl-dot dino-dot"><i class="fas fa-dragon"></i></div>
+          <div class="tl-card glass-card">
+            <span class="tl-time">252–66 Juta Tahun Lalu</span>
+            <h3>Era Dinosaurus</h3>
+            <p>Makhluk-makhluk raksasa mendominasi Bumi selama 186 juta tahun. Era ini berakhir dengan kepunahan massal akibat tumbukan asteroid 10 km di Semenanjung Yucatan, Mexico — membuka jalan bagi mamalia.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item tl-left" data-aos="fade-right" data-aos-delay="600">
+          <div class="tl-dot human-dot"><i class="fas fa-user-astronaut"></i></div>
+          <div class="tl-card glass-card">
+            <span class="tl-time">300.000 Tahun Lalu — Sekarang</span>
+            <h3>Era Manusia Modern</h3>
+            <p>Homo sapiens muncul di Afrika, mengembangkan bahasa, budaya, dan teknologi. Dalam 13,8 miliar tahun sejarah alam semesta, kita adalah satu-satunya spesies yang diketahui mampu memahami dan mempelajari jagad raya ini.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════ FACTS ════════════════════════════════════════════ -->
+  <section class="facts-section" id="facts">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <p class="section-tag"><i class="fas fa-lightbulb"></i> FAKTA MENARIK</p>
+        <h2 class="section-title">Keajaiban Luar Angkasa</h2>
+        <p class="section-desc">Fakta-fakta mengagumkan yang akan mengubah cara pandang Anda tentang alam semesta.</p>
+      </div>
+      <div class="facts-slider-wrap" data-aos="fade-up" data-aos-delay="200">
+        <div class="facts-slider" id="factsSlider">
+
+          <div class="fact-card glass-card">
+            <div class="fact-num">01</div>
+            <div class="fact-icon"><i class="fas fa-gem"></i></div>
+            <h3>Hujan Berlian di Neptunus</h3>
+            <p>Tekanan ekstrem di interior Neptunus (dan Uranus) mengkristalkan karbon menjadi berlian. Berlian ini "turun hujan" menuju inti planet, membentuk lautan berlian cair di sekitar inti padat.</p>
+          </div>
+
+          <div class="fact-card glass-card">
+            <div class="fact-num">02</div>
+            <div class="fact-icon"><i class="fas fa-sun"></i></div>
+            <h3>Matahari Menghasilkan Energi Gila</h3>
+            <p>Setiap detik, Matahari mengubah 600 juta ton hidrogen menjadi helium melalui fusi nuklir. Energi yang dihasilkan dalam 1 detik cukup untuk memenuhi kebutuhan listrik manusia selama 200.000 tahun!</p>
+          </div>
+
+          <div class="fact-card glass-card">
+            <div class="fact-num">03</div>
+            <div class="fact-icon"><i class="fas fa-volume-mute"></i></div>
+            <h3>Luar Angkasa Sunyi Total</h3>
+            <p>Di luar angkasa tidak ada suara — benar-benar senyap. Suara membutuhkan medium untuk merambat, dan vakum antariksa tidak memilikinya. Ledakan supernova sekalipun tidak akan terdengar dari luar.</p>
+          </div>
+
+          <div class="fact-card glass-card">
+            <div class="fact-num">04</div>
+            <div class="fact-icon"><i class="fas fa-thermometer-full"></i></div>
+            <h3>Venus Lebih Panas dari Merkurius</h3>
+            <p>Meski Merkurius lebih dekat ke Matahari, Venus lebih panas (462°C rata-rata) karena atmosfer tebalnya yang kaya CO₂ menciptakan efek rumah kaca paling ekstrem di tata surya.</p>
+          </div>
+
+          <div class="fact-card glass-card">
+            <div class="fact-num">05</div>
+            <div class="fact-icon"><i class="fas fa-expand"></i></div>
+            <h3>UY Scuti — Bintang Terbesar</h3>
+            <p>UY Scuti adalah bintang terbesar yang diketahui — 1.700x lebih besar dari Matahari! Jika diletakkan di pusat tata surya, permukaannya akan melampaui orbit Jupiter. Volumenya 5 miliar kali Matahari.</p>
+          </div>
+
+          <div class="fact-card glass-card">
+            <div class="fact-num">06</div>
+            <div class="fact-icon"><i class="fas fa-ring"></i></div>
+            <h3>Cincin Saturnus Akan Hilang</h3>
+            <p>Cincin Saturnus sedang "hujan" ke planet — material cincin jatuh ke atmosfer Saturnus dengan kecepatan 10 ton/detik. Dalam 100 juta tahun, cincin paling ikonik di tata surya akan lenyap sepenuhnya.</p>
+          </div>
+
+          <div class="fact-card glass-card">
+            <div class="fact-num">07</div>
+            <div class="fact-icon"><i class="fas fa-shoe-prints"></i></div>
+            <h3>Jejak Kaki di Bulan Abadi</h3>
+            <p>Jejak kaki Neil Armstrong di Bulan akan tetap ada selama jutaan tahun. Bulan tidak memiliki atmosfer, angin, atau air yang akan mengikisnya. Satu-satunya ancaman adalah mikrometeroit yang sangat lambat.</p>
+          </div>
+
+          <div class="fact-card glass-card">
+            <div class="fact-num">08</div>
+            <div class="fact-icon"><i class="fas fa-hourglass"></i></div>
+            <h3>Waktu Bergerak Lebih Lambat di Orbit</h3>
+            <p>Jam di satelit GPS bergerak lebih cepat 38 mikrodetik per hari dibanding jam di Bumi — efek relativitas Einstein. Jika tidak dikoreksi, GPS akan meleset 10 km per hari. Einstein benar-benar benar!</p>
+          </div>
+
+          <div class="fact-card glass-card">
+            <div class="fact-num">09</div>
+            <div class="fact-icon"><i class="fas fa-water"></i></div>
+            <h3>Awan Air Terbesar di Alam Semesta</h3>
+            <p>Para astronom menemukan awan uap air raksasa mengelilingi quasar APM 08279+5255 — mengandung air 140 triliun kali jumlah semua air di lautan Bumi! Berada di 12 miliar tahun cahaya dari kita.</p>
+          </div>
+
+          <div class="fact-card glass-card">
+            <div class="fact-num">10</div>
+            <div class="fact-icon"><i class="fas fa-magnet"></i></div>
+            <h3>Magnetar — Magnet Paling Kuat</h3>
+            <p>Magnetar adalah bintang neutron dengan medan magnet terkuat di alam semesta — 10^15 Tesla! Jika magnetar ada sejauh jarak Bulan dari Bumi, ia akan menarik kunci di saku Anda dan menghancurkan tubuh Anda.</p>
+          </div>
+
+          <div class="fact-card glass-card">
+            <div class="fact-num">11</div>
+            <div class="fact-icon"><i class="fas fa-eye"></i></div>
+            <h3>Anda Melihat ke Masa Lalu</h3>
+            <p>Cahaya dari bintang terdekat (Proxima Centauri) membutuhkan 4,2 tahun untuk sampai ke Bumi. Artinya, Anda melihat bintang itu seperti 4 tahun lalu. Cahaya dari galaksi jauh? Anda melihat miliaran tahun ke masa lalu!</p>
+          </div>
+
+          <div class="fact-card glass-card">
+            <div class="fact-num">12</div>
+            <div class="fact-icon"><i class="fas fa-snowflake"></i></div>
+            <h3>Suhu Terdingn di Alam Semesta</h3>
+            <p>Boomerang Nebula adalah tempat terdingin alami yang diketahui di alam semesta pada -272,15°C (-458°F) — bahkan lebih dingin dari latar belakang kosmik (-270,45°C). Gas yang mengembang cepat menciptakan pendinginan ekstrem ini.</p>
+          </div>
+
+          <div class="fact-card glass-card">
+            <div class="fact-num">13</div>
+            <div class="fact-icon"><i class="fas fa-beer-mug-empty"></i></div>
+            <h3>Awan Alkohol di Luar Angkasa</h3>
+            <p>Awan molekuler Sagittarius B2 di dekat pusat galaksi kita mengandung etanol dalam jumlah kolossal — cukup untuk mengisi 400 triliun triliun bir! Awan ini juga mengandung ratusan senyawa organik kompleks.</p>
+          </div>
+
+          <div class="fact-card glass-card">
+            <div class="fact-num">14</div>
+            <div class="fact-icon"><i class="fas fa-rocket"></i></div>
+            <h3>Voyager 1 — Objek Terjauh Buatan Manusia</h3>
+            <p>Diluncurkan 1977, Voyager 1 kini berjarak lebih dari 23 miliar km dari Matahari — sudah keluar dari heliosfer! Sinyal radionya membutuhkan 22+ jam untuk mencapai Bumi meski bergerak pada kecepatan cahaya.</p>
+          </div>
+
+          <div class="fact-card glass-card">
+            <div class="fact-num">15</div>
+            <div class="fact-icon"><i class="fas fa-dna"></i></div>
+            <h3>Kita Adalah Debu Bintang</h3>
+            <p>Semua atom di tubuh kita — karbon, nitrogen, oksigen, zat besi — ditempa di perut bintang masif yang kemudian meledak sebagai supernova. Seperti kata Carl Sagan: "We are a way for the cosmos to know itself."</p>
+          </div>
+
+        </div>
+        <div class="facts-nav">
+          <button class="facts-btn" id="factsPrev"><i class="fas fa-chevron-left"></i></button>
+          <div class="facts-dots" id="factsDots"></div>
+          <button class="facts-btn" id="factsNext"><i class="fas fa-chevron-right"></i></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════ CONTACT ══════════════════════════════════════════ -->
+  <section class="contact-section" id="contact">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <p class="section-tag"><i class="fas fa-satellite-dish"></i> KONTAK</p>
+        <h2 class="section-title">Hubungi Kami</h2>
+        <p class="section-desc">Ada pertanyaan atau ingin berkolaborasi? Kirim pesan kepada kami.</p>
+      </div>
+      <div class="contact-wrap" data-aos="fade-up" data-aos-delay="200">
+        <form class="contact-form glass-card" id="contactForm">
+          <div class="form-group">
+            <label for="name"><i class="fas fa-user"></i> Nama</label>
+            <input type="text" id="name" name="name" placeholder="Nama lengkap Anda" required />
+          </div>
+          <div class="form-group">
+            <label for="email"><i class="fas fa-envelope"></i> Email</label>
+            <input type="email" id="email" name="email" placeholder="email@domain.com" required />
+          </div>
+          <div class="form-group">
+            <label for="subject"><i class="fas fa-tag"></i> Subjek</label>
+            <input type="text" id="subject" name="subject" placeholder="Subjek pesan" required />
+          </div>
+          <div class="form-group">
+            <label for="message"><i class="fas fa-comment"></i> Pesan</label>
+            <textarea id="message" name="message" rows="5" placeholder="Tulis pesan Anda di sini..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-glow full-width">
+            <i class="fas fa-paper-plane"></i> Kirim Pesan
+          </button>
+          <div class="form-success" id="formSuccess">
+            <i class="fas fa-check-circle"></i> Pesan berhasil terkirim! Kami akan segera menghubungi Anda.
+          </div>
+        </form>
+        <div class="contact-info" data-aos="fade-left" data-aos-delay="300">
+          <div class="info-card glass-card">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+              <h4>Lokasi</h4>
+              <p>Galaksi Bima Sakti, Lengan Orion, Bumi 🌍</p>
+            </div>
+          </div>
+          <div class="info-card glass-card">
+            <i class="fas fa-envelope"></i>
+            <div>
+              <h4>Email</h4>
+              <p>hello@cosmosedu.id</p>
+            </div>
+          </div>
+          <div class="info-card glass-card">
+            <i class="fas fa-satellite"></i>
+            <div>
+              <h4>Misi</h4>
+              <p>Menginspirasi generasi penjelajah luar angkasa berikutnya</p>
+            </div>
+          </div>
+          <div class="social-links">
+            <a href="#" class="social-btn" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-btn" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-btn" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="social-btn" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════ FOOTER ═══════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer-stars"></div>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#hero" class="footer-logo">
+            <i class="fas fa-meteor"></i> COSMOS<span>EDU</span>
+          </a>
+          <p>Platform edukasi astronomi interaktif yang menghubungkan rasa penasaran manusia dengan keajaiban tak terbatas alam semesta.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+        <div class="footer-nav">
+          <h4>Navigasi Cepat</h4>
+          <ul>
+            <li><a href="#hero"><i class="fas fa-angle-right"></i> Beranda</a></li>
+            <li><a href="#about"><i class="fas fa-angle-right"></i> Tentang Alam Semesta</a></li>
+            <li><a href="#solar"><i class="fas fa-angle-right"></i> Tata Surya</a></li>
+            <li><a href="#galaxy"><i class="fas fa-angle-right"></i> Galaksi</a></li>
+            <li><a href="#blackhole"><i class="fas fa-angle-right"></i> Black Hole</a></li>
+            <li><a href="#timeline"><i class="fas fa-angle-right"></i> Timeline</a></li>
+            <li><a href="#facts"><i class="fas fa-angle-right"></i> Fakta Menarik</a></li>
+          </ul>
+        </div>
+        <div class="footer-topics">
+          <h4>Topik Unggulan</h4>
+          <ul>
+            <li><a href="#about"><i class="fas fa-angle-right"></i> Big Bang Theory</a></li>
+            <li><a href="#about"><i class="fas fa-angle-right"></i> Materi & Energi Gelap</a></li>
+            <li><a href="#blackhole"><i class="fas fa-angle-right"></i> Black Hole & Singularitas</a></li>
+            <li><a href="#galaxy"><i class="fas fa-angle-right"></i> Nebula & Bintang</a></li>
+            <li><a href="#solar"><i class="fas fa-angle-right"></i> Planet-Planet</a></li>
+            <li><a href="#timeline"><i class="fas fa-angle-right"></i> Sejarah Kosmik</a></li>
+          </ul>
+        </div>
+        <div class="footer-quote-box">
+          <h4>Quote Kosmik</h4>
+          <blockquote>
+            "The cosmos is within us. We are made of star-stuff. We are a way for the universe to know itself."
+          </blockquote>
+          <cite>— Carl Sagan</cite>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 CosmosEdu. Dibuat dengan <i class="fas fa-heart"></i> dan <i class="fas fa-star"></i> untuk para penjelajah alam semesta.</p>
+        <p class="footer-disclaimer">Konten edukasi — untuk ilmu pengetahuan dan inspirasi.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
+
